@@ -1,38 +1,44 @@
 import React, { Component } from 'react';
 import {
   View,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 import marked from 'marked';
 import HTMLView from 'react-native-htmlview';
 import axios from 'axios';
+
 import LoadingView from './LoadingView';
+import AppleView from './AppleView';
+import AndroidView from './AndroidView';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
-class MarkdownPage extends React.Component {
+class MarkdownPage extends Component {
+  static route = {
+    navigationBar: {
+      title: 'Whats New',
+    },
+  }
+
   constructor(props) {
     super(props);
 
     this.getMarkdown = this.getMarkdown.bind(this);
+    this.renderProperView = this.renderProperView.bind(this);
     this.state = {markDownData: null, loaded: false};
+    console.log('props', this.props);
   }
-
-  static route = {
-    navigationBar: {
-     title: "Whats New",
-    }
-  }
-
   componentDidMount() {
-    this.getMarkdown(this.props.userLink);
+    if (this.props.markdownLink !== undefined) {
+      this.getMarkdown(this.props.markdownLink);
+    }
   }
 
   getMarkdown(link) {
@@ -42,15 +48,24 @@ class MarkdownPage extends React.Component {
       })
   }
 
+  renderProperView() {
+    if (this.props.operatingSystem === 'iOS' && this.props.appId !== undefined) {
+      return <AppleView appId="284910350" />
+    } else if (this.props.operatingSystem === 'android' && this.props.appId !== undefined) {
+      return <AndroidView appId="284910350" />
+    }
+  }
+
   render() {
     if (!this.state.loaded) {
       return <LoadingView />
     }
     return (
       <View style={styles.container}>
-        <HTMLView
-          value={this.state.markdownData}
-        />
+        {
+          this.props.operatingSystem !== undefined
+          ? this.renderProperView()
+          : <HTMLView value={this.state.markdownData} />}
       </View>
     )
   }

@@ -11,14 +11,16 @@ import {
 
 import AppRouter from './navigation/AppRouter';
 
-class App extends Component {
-  render() {
-    return (
-      <NavigationProvider router={AppRouter}>
-        <StackNavigation initialRoute={AppRouter.getRoute('markDownPage')} />
-      </NavigationProvider>
-    );
-  }
-}
+
+const App = (props) =>
+  <NavigationProvider router={AppRouter}>
+    <StackNavigation
+      initialRoute={AppRouter.getRoute('markDownPage', {
+        appId: props.appId,
+        operatingSystem: props.operatingSystem,
+        markdownLink: props.markdownLink
+      })}
+    />
+  </NavigationProvider>;
 
 export default App;
