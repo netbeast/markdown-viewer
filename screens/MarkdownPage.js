@@ -54,6 +54,7 @@ class MarkdownPage extends Component {
     } else if (this.props.operatingSystem === 'android' && this.props.appId !== undefined) {
       return <AndroidView appId="284910350" />
     }
+    return null
   }
 
   render() {
