@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import {
   View,
-  ListView,
-  Text,
-  Image,
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
 
-import Markdown from 'react-native-simple-markdown'
+import marked from 'marked';
+import HTMLView from 'react-native-htmlview';
 import axios from 'axios';
+import LoadingView from './LoadingView';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }
 });
 
 class MarkdownPage extends React.Component {
@@ -23,7 +22,6 @@ class MarkdownPage extends React.Component {
     super(props);
 
     this.getMarkdown = this.getMarkdown.bind(this);
-    this.renderLoadingView = this.renderLoadingView.bind(this);
     this.state = {markDownData: null, loaded: false};
   }
 
@@ -34,34 +32,25 @@ class MarkdownPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getMarkdown(this.props.markDownLink);
+    this.getMarkdown(this.props.userLink);
   }
 
   getMarkdown(link) {
     axios.get(link)
       .then((markdownData) => {
-        this.setState({markdownData: markdownData.data, loaded: true});
-        console.log('state', this.state.markdownData);
+        this.setState({markdownData: marked(markdownData.data), loaded: true});
       })
-  }
-
-  renderLoadingView() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Loading What's New...
-        </Text>
-      </View>
-    );
   }
 
   render() {
     if (!this.state.loaded) {
-      return this.renderLoadingView();
+      return <LoadingView />
     }
     return (
       <View style={styles.container}>
-        <Markdown>{this.state.markdownData}</Markdown>
+        <HTMLView
+          value={this.state.markdownData}
+        />
       </View>
     )
   }
