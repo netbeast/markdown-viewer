@@ -16,7 +16,6 @@ const App = (props) =>
   <NavigationProvider router={AppRouter}>
     <StackNavigation
       initialRoute={AppRouter.getRoute('markDownPage', {
-        appId: props.appId,
         operatingSystem: props.operatingSystem,
         markdownLink: props.markdownLink
       })}

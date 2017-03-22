@@ -13,12 +13,14 @@ const styles = StyleSheet.create({
   },
 })
 
-import store from 'app-store-scraper';
+import HTMLView from 'react-native-htmlview';
 
 const AppleView = (props) => {
+  console.log('props', props);
+  props.readMD();
   return (
     <View style={styles.container}>
-      <Text>yo.</Text>
+      <HTMLView value={props.mdData} />
     </View>
   )
 }

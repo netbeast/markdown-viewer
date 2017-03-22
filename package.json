@@ -9,15 +9,20 @@
   "dependencies": {
     "@expo/ex-navigation": "^2.9.2",
     "app-store-scraper": "^0.6.0",
-    "axios": "^0.15.3",
     "babel-eslint": "^7.1.1",
     "babel-preset-react-native-stage-0": "^1.0.1",
+    "crypto": "^0.0.3",
+    "events": "^1.1.1",
     "marked": "^0.3.6",
     "querystring": "^0.2.0",
     "react": "15.4.2",
     "react-native": "^0.42.0",
+    "react-native-fetch-blob": "^0.10.2",
+    "react-native-fs": "^2.1.0-rc.1",
+    "react-native-get-real-path": "git+https://github.com/Wraptime/react-native-get-real-path.git",
     "react-native-htmlview": "^0.5.0",
-    "react-native-simple-markdown": "^1.0.60-rc.3"
+    "react-native-simple-markdown": "^1.0.60-rc.3",
+    "react-native-xml2js": "^1.0.2"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

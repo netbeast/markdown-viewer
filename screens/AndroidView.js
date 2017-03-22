@@ -5,8 +5,6 @@ import {
   Text,
 } from 'react-native'
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -15,10 +13,13 @@ const styles = StyleSheet.create({
   },
 })
 
+import HTMLView from 'react-native-htmlview';
+
 const AndroidView = (props) => {
+  props.readMD();
   return (
     <View style={styles.container}>
-      <Text>yo.</Text>
+      <HTMLView value={props.mdData} />
     </View>
   )
 }
