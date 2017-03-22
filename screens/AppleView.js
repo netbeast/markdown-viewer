@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
 import HTMLView from 'react-native-htmlview';
 
 const AppleView = (props) => {
-  console.log('props', props);
   props.readMD();
   return (
     <View style={styles.container}>
