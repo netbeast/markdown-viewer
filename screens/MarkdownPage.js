@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import marked from 'marked';
+import axios from 'axios';
 import HTMLView from 'react-native-htmlview';
 import RNFS from 'react-native-fs';
 
@@ -80,7 +81,6 @@ class MarkdownPage extends Component {
   renderProperView() {
     // console.log('in function', this.props);
     if (this.props.operatingSystem === 'iOS' && this.props.markdownLink === undefined) {
-      console.log('in if');
       return <AppleView appId="284910350" readMD={this.readLocalMDFileIOS} mdData={this.state.markDownData} />
     } else if (this.props.operatingSystem === 'android') {
       return <AndroidView appId="284910350" readMD={this.readLocalMDFileAndroid} mdData={this.state.markDownData} />

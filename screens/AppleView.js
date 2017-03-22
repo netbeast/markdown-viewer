@@ -2,8 +2,9 @@ import React from 'react'
 import {
   View,
   StyleSheet,
-  Text,
 } from 'react-native'
+
+import HTMLView from 'react-native-htmlview';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,8 +13,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-
-import HTMLView from 'react-native-htmlview';
 
 const AppleView = (props) => {
   props.readMD();
